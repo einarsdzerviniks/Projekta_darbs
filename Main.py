@@ -1,6 +1,48 @@
 import request
 from bs4 import BeautifulSoup
 # jāizveido datu struktūra
+class Node:
+    def __init__(self, id, title, year, engine, milage, price, link, image):
+        self.id = id
+        self.title = title
+        self.year = year
+        self.engine = engine
+        self.milage = milage
+        self.price = price
+        self.link = link
+        self.image = image
+        self.next = None
+class CarDatabase:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
+    def append(self, data):
+        new_node = Node(**data)
+        if not self.head:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next =  new_node
+            self.tail = new_node
+        self.size += 1
+    def __len__(self):
+        return self.size
+    def print(self):
+        current = self.head
+        while current:
+            print(f"ID: {current.id}, Title: {current.title}, Year: {current.year}, Engine: {current.engine}, Mileage: {current.mileage}, Price: {current.price}, Link: {current.link}, Image: {current.image}")
+            current = current.next
+    def to_txt(self):
+        with open ("car_database.txt", "w", encoding="utf-8") as file:
+            current = self.head
+            while current:
+                file.write(f"ID: {current.id}, Title: {current.title}, Year: {current.year}, Engine: {current.engine}, Mileage: {current.mileage}, Price: {current.price}, Link: {current.link}, Image: {current.image}\n")
+                current = current.next
+        print(" Dati saglabāti car_database.txt failā.")
+
+database = CarDatabase()
+
 marka = input("Ievadi auto marku: ").strip().lower()
 modelis = input("Ievadi auto modeli: ").strip().lower()
 
@@ -65,7 +107,7 @@ while page <= last_page:
             img_url = img_elem["src"] if img_elem else "Nav attēla"
             # 
             
-            })
+            
 
         except Exception as e:
             print(f" Kļūda apstrādājot sludinājumu: {e}")
