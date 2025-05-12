@@ -60,6 +60,22 @@ class CarDatabase:
                 file.write("==================\n\n")
                 current = current.next
         print("Dati saglabāti car_database.txt failā.")
+class MySet:
+    def __init__(self):
+        self.data = {}
+
+    def add(self, item):
+        self.data[item] = True
+
+    def __contains__(self, item):
+        return item in self.data
+
+    def __len__(self):
+        return len(self.data)
+
+    def __str__(self):
+        return f"Set({list(self.data.keys())})"
+
 
 database = CarDatabase()
 
@@ -72,9 +88,8 @@ headers = {
 }
 
 page = 1
-processed_ids = set()
+processed_ids = MySet()
 
-# Nosakām maksimālo lapu skaitu
 response = requests.get(base_url.format(1), headers=headers)
 soup = BeautifulSoup(response.text, 'html.parser')
 
