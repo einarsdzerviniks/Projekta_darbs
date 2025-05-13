@@ -1,6 +1,7 @@
 # Projekta darbs Auto Sludinājumu Web Scraper no ss.lv
 
 Šī Python programma automātiski savāc sludinājumus no [ss.lv](https://www.ss.lv), pamatojoties uz lietotāja ievadīto automašīnas marku un modeli. Iegūtie dati tiek strukturēti ar saistītā saraksta datu struktūru un saglabāti teksta failā.
+Darbu izveidoja Einārs Dzerviniks (241RDB222) un Kristers Korkls (241RDB006)
 
 ## Projekta uzdevums
 
